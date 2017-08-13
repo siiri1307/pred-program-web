@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ylesanne ${yl.number}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2 th:text="'Ülesanne ' + ${yl.number}" />
+
+<form action="#" th:action="@{/ylesanded/{number}(number=${yl.number})}" th:object="${pakkumine}" method="post">
+    <p th:text="'Väide: ' + ${yl.vaide}" />
+    <p>Kasutatavad sümbolid on ~, ->, ∨, &amp;, ¬, ∀, ∃.</p>
+    <!-- <input type="button" value="∀" th:onclick= "'kopeeriSymbol(\'' + ${pakkumine.lahendus} + '\');'"/> -->
+    <p>
+        <textarea id="sisestus" type="text" th:field="*{lahendus}" rows = "20" cols = "60"/>
+    </p>
+    <p>
+        <input type="submit" value="Kontrolli" />
+    </p>
+</form>
+
+
+<div>
+
+</div>
+
+<p th:text="${tulemus}"/>
+
+<script>
+    function kopeeriSymbol(senine) {
+        window.alert(senine);
+        var senine2 = document.getElementById("sisestus").innerHTML;
+        senine2 += "∀";
+        document.getElementById("sisestus").innerHTML = senine2;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Predikaatarvutuse väljendamisülesanded</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Predikaatarvutuse väljendamisülesanded</h1>
+<div>
+    <div th:each="yl : ${ylesanded}">
+        <p><a th:href="@{/ylesanded/{number}(number=${yl.number})}" th:text="'Ülesanne ' + ${yl.number}"/></p>
+        <!--<p th:text="'Väite ' + ${yl.vaide} + ' õige lahendus on ' + ${yl.lahendus}"/>-->
+    </div>
+</div>
+
+</body>
+</html>
