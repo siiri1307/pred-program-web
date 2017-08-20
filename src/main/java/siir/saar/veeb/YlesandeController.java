@@ -13,6 +13,7 @@ import predmoodul.erindid.SyntaksiViga;
 import predmoodul.erindid.VaarVabadeMuutujateEsinemine;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -21,9 +22,10 @@ public class YlesandeController {
   Pakkumine tudengiPakkumine;
 
   @RequestMapping(method = RequestMethod.GET, value = "/ylesanded/{number}")
-  public String naitaYlesannet(@PathVariable String number, Model model) {
+  public String naitaYlesannet(@PathVariable String number, Model model) throws SQLException, ClassNotFoundException {
 
     List<Ylesanne> ylesanded = Main.getYlesanded();
+    //List<Ylesanne> ylesanded = Ylesanne.getYlesanded();
 
     model.addAttribute("yl", ylesanded.get(Integer.parseInt(number)-1));
     model.addAttribute("pakkumine", new Pakkumine());
@@ -33,11 +35,12 @@ public class YlesandeController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/ylesanded/{number}")
-  public String kontrolliLahendust(@ModelAttribute Pakkumine pakkumine, @PathVariable String number, Model model) throws VaarVabadeMuutujateEsinemine, AbiValemEiOleDefineeritud, SyntaksiViga, IOException, ErinevIndiviidideArv {
+  public String kontrolliLahendust(@ModelAttribute Pakkumine pakkumine, @PathVariable String number, Model model) throws VaarVabadeMuutujateEsinemine, AbiValemEiOleDefineeritud, SyntaksiViga, IOException, ErinevIndiviidideArv, SQLException, ClassNotFoundException {
 
     tudengiPakkumine = pakkumine;
 
     List<Ylesanne> ylesanded = Main.getYlesanded();
+    //List<Ylesanne> ylesanded = Ylesanne.getYlesanded();
 
     String tudengiVastus = pakkumine.getLahendus();
     String oigeVastus = ylesanded.get(Integer.parseInt(number)-1).getLahendus();

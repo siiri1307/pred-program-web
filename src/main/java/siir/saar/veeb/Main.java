@@ -1,5 +1,6 @@
 package siir.saar.veeb;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,17 @@ public class Main {
     static List<Ylesanne> getYlesanded(){
 
         return ylesanded;
+
+    }
+
+    public static Connection getABYhendus() throws ClassNotFoundException, SQLException  {
+
+        Class.forName("org.h2.Driver");
+
+        return DriverManager.getConnection("jdbc:h2:~/test", "admin", "admin");
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
     }
 }
