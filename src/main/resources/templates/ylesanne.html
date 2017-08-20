@@ -10,7 +10,7 @@
 
 <form action="#" th:action="@{/ylesanded/{number}(number=${yl.number})}" th:object="${pakkumine}" method="post">
     <p th:text="'Väide: ' + ${yl.vaide}" />
-    <p>Kasutatavad sümbolid on ~, ->, ∨, &amp;, ¬, ∀, ∃.</p>
+    <p>Kasutatavad sümbolid on ¬ (F1), &amp; (F2), ∨ (F3), -> (F4), ~ (F5), ∀ (F6), ∃ (F7).</p>
     <!-- <input type="button" value="∀" th:onclick= "'kopeeriSymbol(\'' + ${pakkumine.lahendus} + '\');'"/> -->
     <p>
         <textarea id="sisestus" th:onkeydown="'kopeeriMark(event);'" type="text" th:field="*{lahendus}" rows = "20" cols = "60"/>
