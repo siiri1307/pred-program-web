@@ -44,7 +44,8 @@ public class YlesandeController {
     String kontrollimiseTulemus = "";
 
     try{
-      Kontroll kontroll = new Kontroll(tudengiVastus, oigeVastus);
+      String vastusKommentaarideta = tudengiVastus.replaceAll("/\\*.*\\*/", "");
+      Kontroll kontroll = new Kontroll(vastusKommentaarideta, oigeVastus);
       int kasOige = kontroll.getKontrolliTulemus();
       if(kasOige == 0){
         kontrollimiseTulemus = "Sinu valem ei ole õige. " + kontroll.kontraNaideStringina();
@@ -63,6 +64,9 @@ public class YlesandeController {
       kontrollimiseTulemus = viga.getMessage();
     }
     catch(SyntaksiViga viga){
+      kontrollimiseTulemus = viga.getMessage();
+    }
+    catch(AbiValemEiOleDefineeritud viga){
       kontrollimiseTulemus = viga.getMessage();
     }
 

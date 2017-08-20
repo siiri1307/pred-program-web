@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class EsileheController {
 
-  @RequestMapping(value = "/ylesanded", method = RequestMethod.GET)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String getYlesanded(@RequestParam(value = "", required = false, defaultValue = "") String yl, Model model) {
 
 	model.addAttribute("ylesanded", Main.getYlesanded());
